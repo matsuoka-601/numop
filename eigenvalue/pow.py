@@ -13,13 +13,18 @@ MAX_ITER = 20
 eps = 1e-10
 
 pre_val = 1e18
+
+# x_k: y_{k - 1} / || y_{k - 1} ||
+# y_k: A x_k
 for iter in range(MAX_ITER):
     y = matvec_mul(A, x)
     x = normalize_vec(y)
-    cur_val = inner_prod(x, y)
+    # The actual representation is (x_k, y_k) / (x_k, x_k), but it can be replaced with (x_k, y_k) as long as
+    # x is normalized. 
+    cur_val = inner_prod(x, y) 
     if (abs(pre_val - cur_val) <= eps): # stop condition
         break
-    pre_val = inner_prod(x, y)
+    pre_val = cur_val 
 
 
 λ = inner_prod(x, y)
