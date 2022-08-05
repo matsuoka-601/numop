@@ -52,3 +52,13 @@ def mat_mul(A, B, A_transpose = False):
                     ret[i][j] += A[k][i] * B[k][j]
 
     return ret
+
+
+def list_to_str(l):
+    n = len(l)
+    ret = '['
+    for i in range(n):
+        ret += '{:.3e}'.format(l[i])
+        if (i != n - 1): ret += ', '
+    ret += ']'
+    return ret

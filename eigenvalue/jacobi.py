@@ -2,7 +2,7 @@ import math
 import sys
 sys.path.append("..")
 import copy
-from utils import mat_mul
+from utils import list_to_str, mat_mul
 from eigenvalue_test import eigenvalue_test
 
 def stop_condition(A):
@@ -90,12 +90,8 @@ for i in range(n):
 
 print("Eigenvector: ")
 for i in range(n):
-    print("     v_%d = [" % i, end = '')
-    for j in range(n):
-        tmp_str = '{:.3e}'.format(U[j][i])
-        if (j != n - 1): tmp_str += ', ' 
-        print(tmp_str, end = '')
-    print("]^T")
+    v = [U[j][i] for j in range(n)]
+    print("     v_%d = " % i + list_to_str(v) + "^T")
 
 
 for i in range(n):
